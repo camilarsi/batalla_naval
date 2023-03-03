@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+table, tr, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+}
+
+table{
+    background-color: aquamarine;
+}
+
+td {
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    width: 50px;
+  }
+
+.fragata::after{
+    content:" ";
+    background-color: brown;
+    display: block;
+    height: 30px;
+}
+
+.coordenada-numerica, .coordenada-alfabetica{
+    background-color: bisque;
+}
+
+  
+ 
