@@ -27,7 +27,7 @@ class TableroController
     {
 
         $tablero = $this->getBodyJSON();
-        $fragatas = $tablero->fragatas;
+        $fragatas = $tablero->flota;
         $id_tablero = (int) $tablero->id;
         for ($i = 0; $i < count($fragatas); $i++) {
             $x = $fragatas[$i]->x;

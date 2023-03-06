@@ -24,8 +24,7 @@ td {
   }
 
 .fragata::after{
-    content:" ";
-    background-color: brown;
+    content:"🚢 ";
     display: block;
     height: 30px;
 }

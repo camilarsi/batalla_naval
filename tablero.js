@@ -1,5 +1,4 @@
-import { Flota } from "./Flota.js";
-("use strict");
+"use strict";
 
 const formComenzar = document.querySelector("#comenzar");
 
@@ -12,7 +11,8 @@ let botonComenzar = document.querySelector("#btnComenzar");
 
 const tableroPropio = {
   id: -1,
-  flota: new Flota("f", 8),
+  flota: [],
+  maxFragatas: 9,
 };
 
 async function renderizarTablero() {
@@ -32,7 +32,7 @@ async function confirmarTablero() {
   tableroPropio.id = await response.text();
 }
 
-async function  () {
+async function insertarFlotaEnTablero() {
   const response = await fetch("api/insertarFlotaEnTablero", {
     method: "POST",
     body: JSON.stringify(tableroPropio),
@@ -54,41 +54,38 @@ async function confirmarTableroPropio() {
   await insertarFlotaEnTablero();
 }
 
-// function toggleFragata(e) {
-//   if (
-//     tableroPropio.fragatas.length === tableroPropio.maxFragatas &&
-//     !e.target.classList.contains("fragata")
-//   ) {
-//     return -1;
-//   }
-//   const coordenadas = JSON.parse(e.target.dataset.coordenadas);
-//   let indice = tableroPropio.fragatas.findIndex((fragata) => {
-//     // [{ x: 2, y: 'g'}]
-//     return fragata.x === coordenadas.x && fragata.y === coordenadas.y;
-//   });
-//   if (
-//     indice === -1 &&
-//     tableroPropio.fragatas.length < tableroPropio.maxFragatas
-//   ) {
-//     tableroPropio.fragatas.push(coordenadas);
-//   } else {
-//     tableroPropio.fragatas.splice(indice, 1);
-//     botonComenzar.disabled = true;
-//     botonComenzar.textContent = "";
-//   }
-//   if (tableroPropio.fragatas.length === tableroPropio.maxFragatas) {
-//     botonComenzar.disabled = false;
-//     botonComenzar.textContent = "Comenzar";
-//   }
-//   e.target.classList.toggle("fragata");
-//   e.target.classList.remove(".seleccionable");
-//   console.log(tableroPropio.fragatas);
-// }
+function toggleNaveEventHandler(e) {
+  if (
+    tableroPropio.flota.length === tableroPropio.maxFragatas &&
+    !e.target.classList.contains("fragata")
+  ) {
+    return -1;
+  }
+  const coordenadas = JSON.parse(e.target.dataset.coordenadas);
+  let indice = tableroPropio.flota.findIndex((fragata) => {
+    // [{ x: 2, y: 'g'}]
+    return fragata.x === coordenadas.x && fragata.y === coordenadas.y;
+  });
+  if (indice === -1 && tableroPropio.flota.length < tableroPropio.maxFragatas) {
+    tableroPropio.flota.push(coordenadas);
+  } else {
+    tableroPropio.flota.splice(indice, 1);
+    botonComenzar.disabled = true;
+    botonComenzar.textContent = "";
+  }
+  if (tableroPropio.flota.length === tableroPropio.maxFragatas) {
+    botonComenzar.disabled = false;
+    botonComenzar.textContent = "Comenzar";
+  }
+  e.target.classList.toggle("fragata");
+  e.target.classList.remove(".seleccionable");
+  console.log(tableroPropio.flota);
+}
 
 function escucharCeldas() {
   let celdas = document.querySelectorAll(".seleccionable");
   celdas.forEach((el) => {
-    el.addEventListener("click", tableroPropio.flota.toggleNaveEventHandler);
+    el.addEventListener("click", toggleNaveEventHandler);
   });
 }
 
