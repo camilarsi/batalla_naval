@@ -12,12 +12,18 @@
     <header>
       <h1>🚢 Batalla Naval</h1>
     </header>
-    <div id="tableros"></div>
+    <div id="resultado"></div>
     <div>
       <form id="comenzar">
         <label>Nombre: <input id="jugador" type="text" /></label>
         <button id="btnComenzar" type="submit" disabled="true"></button>
       </form>
+    </div>
+    <div id="tableros">
+      <div id="tableroPropio"></div>
+      <button id="btnDisparar" disabled="true">Disparar</button>
+      <div id="radar">
+      </div>
     </div>
   </body>
   <script type="module" src="tablero.js"></script>

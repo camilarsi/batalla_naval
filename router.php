@@ -20,8 +20,12 @@ switch ($params[0]) {
         $tableroController->confirmarTablero();
         break;
     case 'insertarFlotaEnTablero':
-        $tableroController->insertarFlotaEnTablero();
+        $tableroController->insertarCoordenadas();
         break;
+    case 'disparar':
+        $tableroController->disparar();
+    case 'estado':
+        $tableroController->calcularEstadoDelJuego();
     default:
         renderizarTabla([-1, "z"]);
         break;

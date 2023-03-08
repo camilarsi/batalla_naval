@@ -3,6 +3,7 @@
     padding: 0;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
 }
 
 table, tr, td {
@@ -24,14 +25,43 @@ td {
   }
 
 .fragata::after{
-    content:"🚢 ";
-    display: block;
-    height: 30px;
+    content:"🚢";
 }
 
 .coordenada-numerica, .coordenada-alfabetica{
     background-color: bisque;
 }
 
-  
- 
+.radar tr ,.radar td{
+   background-color: blue;
+   color: fuchsia;
+}
+
+.radar:hover{
+    cursor: target;
+}
+
+.tableros {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.seleccionable:hover {
+    cursor: pointer;
+}
+
+.disparo::after {
+    content:"🎯";
+}
+
+.hundido::after{
+    content : "☠️"
+}
+
+.agua::after {
+    content: "🌊";
+}
+
+.ganador::after {
+    content:"¡GANASTE!"
+}
